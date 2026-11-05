@@ -1,0 +1,11 @@
+{
+  "agent_id": "coordinator",
+  "adapter": "arbor_tree",
+  "timeout": 30,
+  "input": {
+    "topic": "Example only: investigate incremental verification",
+    "nodes": [
+      {"id": "candidate-1", "parent_id": "ROOT", "hypothesis": "Example hypothesis, not a generated or verified result"}
+    ]
+  }
+}

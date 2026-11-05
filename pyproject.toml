@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mai-auto"
+version = "0.1.0"
+description = "Thin, provenance-preserving orchestration of pinned research repositories"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+mai = "mai_auto.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["mai_auto*"]
