@@ -10,6 +10,7 @@ import sys
 import time
 import uuid
 from .sources import verify, lock
+from .environment import check_environment
 
 ADAPTERS = {'arbor_tree': 'arbor', 'claw_debate': 'claw', 'claw_discuss_select': 'claw', 'claw_novelty': 'claw', 'claw_stage': 'claw', 'coi_review': 'coi', 'coi_chain': 'coi'}
 
@@ -18,10 +19,18 @@ def run(root, job):
     root = Path(root).resolve()
     adapter = job['adapter']
     key = ADAPTERS[adapter]
-    source = verify(root, key, job.get('source'))
     run_id = uuid.uuid4().hex
     output = root / 'runs' / run_id
     output.mkdir(parents=True)
+    environment = check_environment(root, key, adapter, job, output)
+    if environment['status'] != 'ready':
+        record = {'run_id': run_id, 'agent_id': job['agent_id'], 'adapter': adapter,
+                  'status': 'blocked_environment', 'scientific_verdict': 'not_assessed',
+                  'setup_request': str(output / 'environment-request.json')}
+        (output / 'record.json').write_text(json.dumps(record, indent=2))
+        return record
+    source = environment['source']
+    job = dict(job, python=environment['python'])
     request = dict(job, source=str(source), output=str(output))
     serialized = json.dumps(request, ensure_ascii=False, sort_keys=True)
     (output / 'request.json').write_text(serialized)

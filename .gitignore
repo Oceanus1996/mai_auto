@@ -6,3 +6,5 @@ runs/
 workspace/
 __pycache__/
 *.egg-info/
+
+.environments/

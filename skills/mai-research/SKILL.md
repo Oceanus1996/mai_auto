@@ -4,7 +4,7 @@ description: 编排 AutoResearchClaw 主控、Arbor 存储的自动研究工作�
 ---
 
 ## 顺序
-1. 记录研究目标、资源和阶段预算；检查宿主可运行进程、模型配置与上游环境。
+1. 记录研究目标、资源和阶段预算；检查宿主可运行进程、模型配置与上游环境。每个接口调用前按需委派 mai-setup-environment；收到 blocked_environment 时自动交给该角色处理源码与依赖，成功后恢复原阶段，不把可自行处理的安装工作逐步抛给用户。空接口仍由实现角色补齐。
 2. 调用 mai-literature 精读并综合证据，同时调用 mai-tech-chain 独立维护技术演化链；固定综述与链快照。
 3. 将同一背景包交给 mai-generate-batch、mai-generate-directions、mai-generate-chain、mai-generate-transfer、mai-generate-combine、mai-generate-retrieval。无依赖部分可并行，SciPIP 只接收原生 paper_list/brainstorm，不擅自添加跨候选合成算法；仅对能够确认的来源登记辅助关系。mai-generate-errors 等待有效错例。
 4. 先做 novelty 初筛；调用 mai-debate-early；保留分歧，不将共识当正确性。原生结果到共享主张记录的对应只是附加标注，不改原始辩论内容。

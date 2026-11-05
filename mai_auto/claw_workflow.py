@@ -86,7 +86,9 @@ def run_claw_workflow(root, config, resume=None, retry=False, executor=execute):
     import fcntl
     validate(config)
     root = Path(root).resolve()
-    source = verify(root, 'claw', config.get('source'))
+    env_path = root / '.environments' / 'claw' / 'ready.json'
+    prepared = json.loads(env_path.read_text()) if env_path.exists() else {}
+    source = verify(root, 'claw', config.get('source') or prepared.get('source'))
     sys.path.insert(0, str(source))
     from researchclaw.pipeline.stages import Stage, DECISION_ROLLBACK
     names = {Stage.HYPOTHESIS_GEN: 'generate', Stage.ITERATIVE_REFINE: 'refine'}

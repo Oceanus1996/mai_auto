@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 class Contracts(unittest.TestCase):
     def test_skills_and_source_links(self):
         skills = list((ROOT / 'skills').glob('*/SKILL.md'))
-        self.assertEqual(len(skills), 14)
+        self.assertEqual(len(skills), 15)
         for path in skills:
             content = path.read_text()
             self.assertTrue(content.startswith('---\nname: ' + path.parent.name))

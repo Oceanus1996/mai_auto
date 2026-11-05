@@ -3,7 +3,7 @@
 以 AutoResearchClaw 原生阶段执行器为主，Arbor 保存研究树，独立维护技术演化链；复用原仓库方法，增加接口与明确的调度门禁。
 
 **当前是可导入的 skills 第一版，不是已经完成真实模型验证的全自动科研系统。**
-14 个 SKILL.md 可供本地 backbone 的 agent 宿主或 API agent 宿主加载。仅有模型权重或 API key 不会自动提供文件、进程、检索和调度能力。
+15 个 SKILL.md 可供本地 backbone 的 agent 宿主或 API agent 宿主加载。仅有模型权重或 API key 不会自动提供文件、进程、检索和调度能力。
 
 ## 使用
 
@@ -67,3 +67,7 @@ python -m unittest discover -s tests -v
 `python -m mai_auto.cli loop CONFIG.json` 使用 Claw 原生阶段与回退映射，接入讨论挑选、novelty、最小实验计划检查及结果检查。计划问题回设计、执行问题回修复、pivot 回生成；novelty 必须人工判断，预算耗尽不强制推进。详见 [实现边界与配置](docs/research-loop.md)。
 
 **这是一层适配驱动器，不是未修改的上游 runner，也尚未完成真实研究闭环。** [配置模板](examples/research-loop.template.json) 的空 worker 必须连接原生生成、计划检查、实际结果检查与归档；VR 执行器及模型也需配置。模板会拒绝空入口。
+
+## 按需配置环境
+
+每个原生接口现在先验证环境，可复用上次准备的独立解释器。缺依赖时生成结构化环境请求，由宿主的 `mai-setup-environment` 角色安装、验证并交回继续执行。详见 [环境设置职责与边界](docs/environment-agent.md)。仅运行 Python CLI 不会自动产生一个 LLM 宿主；空接口也不能用安装依赖代替。

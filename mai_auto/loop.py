@@ -45,7 +45,7 @@ def execute(root, spec, context, folder, timeout):
         record = run(root, job)
         save(folder / 'native-record.json', record)
         if record['status'] != 'completed':
-            raise RuntimeError('Native invocation: ' + record['status'])
+            raise RuntimeError('Native invocation: ' + record['status'] + '; setup_request=' + str(record.get('setup_request', '')))
         return json.loads((root / 'runs' / record['run_id'] / 'result.json').read_text())
     command = spec['command']
     # Workers receive a complete context and a unique output path. No shell expansion.
