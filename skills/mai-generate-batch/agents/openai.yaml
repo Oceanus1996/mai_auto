@@ -1,0 +1,4 @@
+interface:
+  display_name: "mai-generate-batch"
+  short_description: "Native upstream research workflow and evidence tracking"
+  default_prompt: "Use $mai-generate-batch to execute the requested research stage with pinned upstream code."

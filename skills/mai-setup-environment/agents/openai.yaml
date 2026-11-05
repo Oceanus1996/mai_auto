@@ -1,0 +1,4 @@
+interface:
+  display_name: "mai-setup-environment"
+  short_description: "Prepare and verify isolated upstream environments"
+  default_prompt: "Use $mai-setup-environment to prepare the required upstream environment and return verified readiness."

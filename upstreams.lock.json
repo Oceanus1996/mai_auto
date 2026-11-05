@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "repositories": {
+    "stan": {
+      "repo": "NoviScl/AI-Researcher",
+      "sha": "e5dd05a90bcadb436c07283c2f429367c6e525d3",
+      "url": "https://github.com/NoviScl/AI-Researcher.git",
+      "entry_file": "ai_researcher/src/grounded_idea_gen.py",
+      "symbol": "idea_generation",
+      "role": "generation",
+      "status": "source_pinned_not_deployed"
+    },
+    "hk": {
+      "repo": "HKUDS/AI-Researcher",
+      "sha": "f9a6f8480860c193afff600eeffe3defcee8a978",
+      "url": "https://github.com/HKUDS/AI-Researcher.git",
+      "entry_file": "research_agent/inno/agents/inno_agent/idea_agent.py",
+      "symbol": "get_idea_agent",
+      "role": "generation",
+      "status": "source_pinned_not_deployed"
+    },
+    "coi": {
+      "repo": "DAMO-NLP-SG/CoI-Agent",
+      "sha": "ac94317ff2d1997f362747edc2c9e5f0fdc9c450",
+      "url": "https://github.com/DAMO-NLP-SG/CoI-Agent.git",
+      "entry_file": "agents.py",
+      "symbol": "DeepResearchAgent.generate_idea_with_chain / improve_experiment",
+      "role": "chain_and_late_review",
+      "status": "source_pinned_not_deployed"
+    },
+    "sci": {
+      "repo": "EagleW/CLBD",
+      "sha": "2dc17a1e2e22c22a6b595c212d3bbeca2b0dd89e",
+      "url": "https://github.com/EagleW/CLBD.git",
+      "entry_file": "models/Iterative/gpt4_iter1.py",
+      "symbol": "script",
+      "role": "generation",
+      "status": "source_pinned_not_deployed"
+    },
+    "pip": {
+      "repo": "cheerss/SciPIP",
+      "sha": "a0a927a7fa830b4fcf9cb33905feecc005d3b631",
+      "url": "https://github.com/cheerss/SciPIP.git",
+      "entry_file": "src/generator.py",
+      "symbol": "IdeaGenerator.generate_ins_bs",
+      "role": "generation",
+      "status": "source_pinned_not_deployed"
+    },
+    "nova": {
+      "repo": "hflyzju/Nova",
+      "sha": "94bdc7590aac160838bfb7895f9e1dc882b233ab",
+      "url": "https://github.com/hflyzju/Nova.git",
+      "entry_file": "src/plan_and_iteration.py",
+      "symbol": "IdeaRelatedPaperPlanThenRetrievalAgent.run",
+      "role": "retrieval",
+      "status": "source_pinned_not_deployed"
+    },
+    "hyp": {
+      "repo": "ChicagoHAI/hypothesis-generation",
+      "sha": "bd37a3129a2f98ee586f545a57b10b59496eedad",
+      "url": "https://github.com/ChicagoHAI/hypothesis-generation.git",
+      "entry_file": "hypogenic/algorithm/update/default.py",
+      "symbol": "DefaultUpdate.update",
+      "role": "counterexample_update",
+      "status": "source_pinned_not_deployed"
+    },
+    "arbor": {
+      "repo": "RUC-NLPIR/Arbor",
+      "sha": "7cdaf1fa6d779b3d5e340052357bf3fe55dfed93",
+      "url": "https://github.com/RUC-NLPIR/Arbor.git",
+      "entry_file": "src/coordinator/idea_tree.py",
+      "symbol": "Node / IdeaTree",
+      "role": "tree",
+      "status": "source_pinned_not_deployed"
+    },
+    "claw": {
+      "repo": "aiming-lab/AutoResearchClaw",
+      "sha": "be4ba4755bf1b52220f25e13b2293b5956590070",
+      "url": "https://github.com/aiming-lab/AutoResearchClaw.git",
+      "entry_file": "researchclaw/pipeline/debate.py",
+      "symbol": "run_debate",
+      "role": "early_debate",
+      "status": "source_pinned_not_deployed"
+    },
+    "curie": {
+      "repo": "Just-Curieous/Curie",
+      "sha": "db1b1f56159b591515f77e03c55bf473d5c1c201",
+      "url": "https://github.com/Just-Curieous/Curie.git",
+      "entry_file": "curie/scheduler.py",
+      "symbol": "SchedNode.update_queues",
+      "role": "formal_experiments",
+      "status": "source_pinned_not_deployed"
+    },
+    "neuri": {
+      "repo": "ChicagoHAI/NeuriCo",
+      "sha": "8170d6d0d9221f5495bc34e67de1b1b86873699a",
+      "url": "https://github.com/ChicagoHAI/NeuriCo.git",
+      "status": "source_pinned_not_deployed",
+      "entry_file": "src/agents/eval_verifier.py",
+      "symbol": "run_eval_verifier",
+      "role": "contract_check"
+    },
+    "scholar": {
+      "repo": "AkariAsai/OpenScholar",
+      "sha": "0e9b8fb912273d3dae39e593da86e4f6d3bf8de1",
+      "url": "https://github.com/AkariAsai/OpenScholar.git",
+      "status": "source_pinned_not_deployed",
+      "entry_file": "src/open_scholar.py",
+      "symbol": "OpenScholar.run",
+      "role": "literature_synthesis"
+    }
+  }
+}

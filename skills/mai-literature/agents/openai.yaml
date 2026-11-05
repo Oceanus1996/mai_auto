@@ -1,0 +1,4 @@
+interface:
+  display_name: "mai-literature"
+  short_description: "Native upstream research workflow and evidence tracking"
+  default_prompt: "Use $mai-literature to execute the requested research stage with pinned upstream code."

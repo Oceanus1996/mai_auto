@@ -1,0 +1,7 @@
+{
+  "agent_id": "early-review",
+  "adapter": "claw_debate",
+  "timeout": 600,
+  "model": {"mode": "local", "base_url": "http://127.0.0.1:8080/v1", "model": "YOUR_LOCAL_MODEL"},
+  "input": {"variables": {"topic": "REPLACE_WITH_TOPIC", "synthesis": "REPLACE_WITH_EVIDENCE_SYNTHESIS"}, "rounds": 1}
+}

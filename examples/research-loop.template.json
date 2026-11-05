@@ -1,0 +1,220 @@
+{
+  "max_rounds": 3,
+  "max_calls": 60,
+  "max_seconds": 1800,
+  "stage_timeout": 300,
+  "input": {
+    "topic": "WebXR interaction regression testing",
+    "literature_synthesis": "REPLACE_WITH_VERIFIED_SYNTHESIS",
+    "papers": [],
+    "claw_config": "/ABSOLUTE_PATH/TO/REAL_CLAW_CONFIG.yaml"
+  },
+  "stages": {
+    "generate": {
+      "command": null
+    },
+    "novelty": {
+      "job": {
+        "adapter": "claw_novelty",
+        "agent_id": "claw_novelty",
+        "input": {
+          "topic": {
+            "$ref": "/input/topic"
+          },
+          "text": {
+            "$ref": "/current/generate/text"
+          },
+          "papers": {
+            "$ref": "/input/papers"
+          }
+        }
+      }
+    },
+    "discuss_select": {
+      "job": {
+        "adapter": "claw_discuss_select",
+        "agent_id": "claw_discuss_select",
+        "input": {
+          "topic": {
+            "$ref": "/input/topic"
+          },
+          "synthesis": {
+            "$ref": "/input/literature_synthesis"
+          },
+          "candidates": {
+            "$ref": "/current/generate/candidates"
+          },
+          "feedback": {
+            "$ref": "/feedback"
+          },
+          "rounds": 1,
+          "max_candidates": 4
+        },
+        "model": {
+          "mode": "local",
+          "base_url": "http://127.0.0.1:8080/v1",
+          "model": "REPLACE_WITH_REAL_MODEL"
+        }
+      }
+    },
+    "novelty_selected": {
+      "job": {
+        "adapter": "claw_novelty",
+        "agent_id": "claw_novelty",
+        "input": {
+          "topic": {
+            "$ref": "/input/topic"
+          },
+          "text": {
+            "$ref": "/current/discuss_select/selected/text"
+          },
+          "papers": {
+            "$ref": "/input/papers"
+          }
+        }
+      }
+    },
+    "design": {
+      "job": {
+        "adapter": "claw_stage",
+        "agent_id": "claw_stage",
+        "input": {
+          "config": {
+            "$ref": "/input/claw_config"
+          },
+          "workspace": {
+            "$ref": "/workspace"
+          },
+          "stage": 9,
+          "auto_approve_gates": true
+        },
+        "pass_env": [
+          "MAI_CLAW_API_KEY"
+        ]
+      }
+    },
+    "plan_check": {
+      "command": null
+    },
+    "implement": {
+      "job": {
+        "adapter": "claw_stage",
+        "agent_id": "claw_stage",
+        "input": {
+          "config": {
+            "$ref": "/input/claw_config"
+          },
+          "workspace": {
+            "$ref": "/workspace"
+          },
+          "stage": 10,
+          "auto_approve_gates": true
+        },
+        "pass_env": [
+          "MAI_CLAW_API_KEY"
+        ]
+      }
+    },
+    "resources": {
+      "job": {
+        "adapter": "claw_stage",
+        "agent_id": "claw_stage",
+        "input": {
+          "config": {
+            "$ref": "/input/claw_config"
+          },
+          "workspace": {
+            "$ref": "/workspace"
+          },
+          "stage": 11,
+          "auto_approve_gates": true
+        },
+        "pass_env": [
+          "MAI_CLAW_API_KEY"
+        ]
+      }
+    },
+    "execute": {
+      "job": {
+        "adapter": "claw_stage",
+        "agent_id": "claw_stage",
+        "input": {
+          "config": {
+            "$ref": "/input/claw_config"
+          },
+          "workspace": {
+            "$ref": "/workspace"
+          },
+          "stage": 12,
+          "auto_approve_gates": true
+        },
+        "pass_env": [
+          "MAI_CLAW_API_KEY"
+        ]
+      }
+    },
+    "result_check": {
+      "command": null
+    },
+    "analyze": {
+      "job": {
+        "adapter": "claw_stage",
+        "agent_id": "claw_stage",
+        "input": {
+          "config": {
+            "$ref": "/input/claw_config"
+          },
+          "workspace": {
+            "$ref": "/workspace"
+          },
+          "stage": 14,
+          "auto_approve_gates": true
+        },
+        "pass_env": [
+          "MAI_CLAW_API_KEY"
+        ]
+      }
+    },
+    "decision": {
+      "job": {
+        "adapter": "claw_stage",
+        "agent_id": "claw_stage",
+        "input": {
+          "config": {
+            "$ref": "/input/claw_config"
+          },
+          "workspace": {
+            "$ref": "/workspace"
+          },
+          "stage": 15,
+          "auto_approve_gates": true
+        },
+        "pass_env": [
+          "MAI_CLAW_API_KEY"
+        ]
+      }
+    },
+    "archive": {
+      "command": null
+    },
+    "refine": {
+      "job": {
+        "adapter": "claw_stage",
+        "agent_id": "claw_stage",
+        "input": {
+          "config": {
+            "$ref": "/input/claw_config"
+          },
+          "workspace": {
+            "$ref": "/workspace"
+          },
+          "stage": 13,
+          "auto_approve_gates": true
+        },
+        "pass_env": [
+          "MAI_CLAW_API_KEY"
+        ]
+      }
+    }
+  }
+}

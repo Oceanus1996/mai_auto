@@ -1,0 +1,7 @@
+{
+  "agent_id": "late-review",
+  "adapter": "coi_review",
+  "timeout": 600,
+  "model": {"mode": "api", "base_url": "https://YOUR_PROVIDER/v1", "model": "YOUR_MODEL", "key_env": "MAI_MODEL_API_KEY"},
+  "input": {"settings": {"improve_cnt": 1}, "arguments": {"idea": "REPLACE_WITH_IDEA", "experiment": "REPLACE_WITH_PLAN", "entities": []}}
+}
