@@ -37,6 +37,20 @@ def call(adapter, source, payload, output, model=None):
         tree.save()
         return {'tree_file': str(tree_path), 'nodes': [n.to_dict() for n in tree.get_all_nodes()]}
     llm = ModelTransport(**model) if model else None
+    if adapter == 'claw_stage':
+        from .claw_extensions import native_stage
+        return native_stage(payload, output)
+    if adapter == 'claw_novelty':
+        from .claw_extensions import novelty
+        return novelty(payload)
+    if adapter == 'claw_discuss_select':
+        from researchclaw.pipeline.debate import run_debate
+        from researchclaw.pipeline.tournament import _parse_winner
+        from researchclaw.prompts import PromptManager
+        from .claw_extensions import discuss_select
+        if llm is None:
+            raise ValueError('Model configuration required')
+        return discuss_select(payload, output, llm, PromptManager(), run_debate, _parse_winner)
     if adapter == 'claw_debate':
         from researchclaw.pipeline.debate import run_debate
         from researchclaw.prompts import PromptManager

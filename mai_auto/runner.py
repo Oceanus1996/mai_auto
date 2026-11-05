@@ -11,7 +11,7 @@ import time
 import uuid
 from .sources import verify, lock
 
-ADAPTERS = {'arbor_tree': 'arbor', 'claw_debate': 'claw', 'coi_review': 'coi', 'coi_chain': 'coi'}
+ADAPTERS = {'arbor_tree': 'arbor', 'claw_debate': 'claw', 'claw_discuss_select': 'claw', 'claw_novelty': 'claw', 'claw_stage': 'claw', 'coi_review': 'coi', 'coi_chain': 'coi'}
 
 
 def run(root, job):
@@ -37,6 +37,9 @@ def run(root, job):
     key_env = job.get('model', {}).get('key_env')
     if key_env and key_env in os.environ:
         env[key_env] = os.environ[key_env]
+    for name in job.get('pass_env', []):
+        if name in os.environ:
+            env[name] = os.environ[name]
     env['PYTHONPATH'] = str(root)
     env['PYTHONDONTWRITEBYTECODE'] = '1'
     try:

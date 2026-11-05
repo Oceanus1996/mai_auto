@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 from .sources import lock, verify, bootstrap
 from .runner import run, run_parallel
+from .claw_workflow import run_claw_workflow, record_novelty_review
 
 
 def main():
@@ -17,7 +18,25 @@ def main():
     batch = commands.add_parser('batch')
     batch.add_argument('jobs', type=Path)
     batch.add_argument('--workers', type=int, default=2)
+    loop = commands.add_parser('loop')
+    loop.add_argument('config', type=Path)
+    loop.add_argument('--resume', type=Path)
+    loop.add_argument('--retry', action='store_true')
+    review = commands.add_parser('novelty-review')
+    review.add_argument('run_dir', type=Path)
+    review.add_argument('decision', choices=['continue', 'differentiate', 'reject', 'need_evidence'])
+    review.add_argument('--reason', required=True)
+    review.add_argument('--reviewer', required=True)
     args = parser.parse_args()
+    if args.command == 'novelty-review':
+        print(json.dumps(record_novelty_review(args.run_dir, args.decision, args.reason, args.reviewer), ensure_ascii=False, indent=2))
+        return
+    if args.command == 'loop':
+        state = run_claw_workflow(args.root, json.loads(args.config.read_text()), args.resume, args.retry)
+        print(json.dumps(state, ensure_ascii=False, indent=2))
+        if state['status'] == 'blocked' or state.get('decision') == 'blocked':
+            raise SystemExit(1)
+        return
     if args.command == 'bootstrap':
         bootstrap(args.root, args.sources)
         return

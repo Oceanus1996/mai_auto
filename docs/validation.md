@@ -27,3 +27,7 @@ MAI_TEST_CLAW=/absolute/path/to/pinned/claw \
 PYTHONDONTWRITEBYTECODE=1 python -m unittest discover -s tests -v
 ```
 Without those variables, native integration cases are explicitly skipped. Ordinary tests use no model or network services except a loopback scripted server in the optional debate test.
+
+## Claw 连续循环
+
+新增 tests/test_loop.py：验证原生 Stage 与回退映射下的两轮连续推进、计划回退、恢复、预算、证据门禁、修订版 novelty 绑定和原生 debate 后排序。人工 novelty 暂停、恢复不绕过、报告变化后旧批准拒绝也已覆盖。模型与实验结果使用确定性夹具，不是科学发现。真实模型、Claw 全套原生阶段和 A-Frame 集成尚未运行验证。

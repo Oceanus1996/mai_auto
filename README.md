@@ -1,6 +1,6 @@
 # mai_auto — 原生科研方法的 Skills 工作台
 
-以 Arbor 为研究树，独立维护技术演化链；复用原仓库方法，只增加 skills、传输和任务记录。
+以 AutoResearchClaw 原生阶段执行器为主，Arbor 保存研究树，独立维护技术演化链；复用原仓库方法，增加接口与明确的调度门禁。
 
 **当前是可导入的 skills 第一版，不是已经完成真实模型验证的全自动科研系统。**
 14 个 SKILL.md 可供本地 backbone 的 agent 宿主或 API agent 宿主加载。仅有模型权重或 API key 不会自动提供文件、进程、检索和调度能力。
@@ -61,3 +61,9 @@ python -m unittest discover -s tests -v
 
 ## 来源与许可
 只保存上游地址、提交与适配调用；第三方代码通过独立 checkout 获取，许可证仍以各锁定仓库为准。分发完整依赖包前须逐仓核对许可证。本仓库不声称拥有第三方方法。
+
+## 连续循环（新增）
+
+`python -m mai_auto.cli loop CONFIG.json` 使用 Claw 原生阶段与回退映射，接入讨论挑选、novelty、最小实验计划检查及结果检查。计划问题回设计、执行问题回修复、pivot 回生成；novelty 必须人工判断，预算耗尽不强制推进。详见 [实现边界与配置](docs/research-loop.md)。
+
+**这是一层适配驱动器，不是未修改的上游 runner，也尚未完成真实研究闭环。** [配置模板](examples/research-loop.template.json) 的空 worker 必须连接原生生成、计划检查、实际结果检查与归档；VR 执行器及模型也需配置。模板会拒绝空入口。
